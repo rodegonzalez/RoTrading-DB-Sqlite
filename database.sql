@@ -27,7 +27,8 @@ CREATE TABLE `operations` (
 	`dollareuro`	decimal(10,6) NOT NULL default 0.0,
 	`imagepath`			text NULL,
 	`iddivisa`		integer NOT NULL DEFAULT 1,
-	`idaccount`		integer NOT NULL default 1
+	`idaccount`		integer NOT NULL default 1,
+	`status`		enum('opened','closed','cancelled','not-set') default 'not-set'
 );
 
 DROP TABLE IF EXISTS `brokers`;
