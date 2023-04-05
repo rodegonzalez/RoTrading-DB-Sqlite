@@ -11,8 +11,8 @@
 
 -- use rotrading;
 
-DROP TABLE IF EXISTS `operations`;
-CREATE TABLE `operations` (
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE `positions` (
 	`idoperation`			integer NOT NULL auto_increment primary key,
 	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`datetimein`	timestamp NULL,
