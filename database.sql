@@ -13,7 +13,7 @@
 
 DROP TABLE IF EXISTS `positions`;
 CREATE TABLE `positions` (
-	`idoperation`			integer NOT NULL auto_increment primary key,
+	`idoperation`	integer NOT NULL auto_increment primary key,
 	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`datetimein`	timestamp NULL,
 	`datetimeout`	timestamp NULL,
@@ -25,15 +25,18 @@ CREATE TABLE `positions` (
 	`commision`		decimal(10,6) NOT NULL default 0.0,
 	`euros`			decimal(10,6) NOT NULL default 0.0,	
 	`dollareuro`	decimal(10,6) NOT NULL default 0.0,
-	`imagepath`			text NULL,
+	`imagepath`		text NULL,
 	`iddivisa`		integer NOT NULL DEFAULT 1,
 	`idaccount`		integer NOT NULL default 1,
-	`status`		enum('opened','closed','cancelled','not-set') default 'not-set'
+	`status`		enum('opened','closed','cancelled','not-set') default 'not-set',
+	`pattern` 		varchar(16) NOT NULL,
+	`setup` 		varchar(16) NOT NULL,
+	`ticker` 		varchar(16) NOT NULL
 );
 
 DROP TABLE IF EXISTS `brokers`;
 CREATE TABLE `brokers` (
-	`idbroker`			integer NOT NULL auto_increment primary key,
+	`idbroker`		integer NOT NULL auto_increment primary key,
 	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`name`			varchar(45) NOT NULL UNIQUE,
 	`description`	text NULL,
@@ -51,12 +54,12 @@ CREATE TABLE `accounts` (
 	`idbroker`		integer NOT NULL default 1,
 	`iddivisa`		integer NOT NULL DEFAULT 1,
 	`status`		enum('active','not-active','cancelled','not-set') default 'not-set',
-	`type`		enum('personal','funded','other','not-set') not null default "not-set"
+	`acctype`		enum('personal','funded','other','not-set') not null default "not-set"
 );
 
 DROP TABLE IF EXISTS `divisas`;
 CREATE TABLE `divisas` (	
-	`iddivisa`			integer NOT NULL auto_increment primary key,
+	`iddivisa`		integer NOT NULL auto_increment primary key,
 	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`name`			varchar(45) NOT NULL UNIQUE,
 	`description`	TEXT NULL
@@ -64,9 +67,52 @@ CREATE TABLE `divisas` (
 
 DROP TABLE IF EXISTS `diaries`;
 CREATE TABLE `diaries` (	
-	`iddiary`			integer NOT NULL auto_increment primary key,			
+	`iddiary`		integer NOT NULL auto_increment primary key,			
 	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`annotation`	text NOT NULL,
 	`short`			text NULL,
 	`keywords`		text NULL
+);
+
+-- patterns 
+DROP TABLE IF EXISTS `positions_pattern`;
+CREATE TABLE `positions_pattern` (	
+	`pattern`		varchar(16) NOT NULL primary key,			
+	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`modification`	timestamp NULL,
+	`name`			varchar(45) NOT NULL unique,
+	`status`		enum('active','not-active') not null default "active"
+);
+
+-- setups 
+DROP TABLE IF EXISTS `positions_setup`;
+CREATE TABLE `positions_setup` (	
+	`setup`			varchar(16) NOT NULL primary key,			
+	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`modification`	timestamp NULL,
+	`name`			varchar(45) NOT NULL unique,
+	`status`		enum('active','not-active') not null default "active"
+);
+
+-- tickers 
+DROP TABLE IF EXISTS `tickers`;
+CREATE TABLE `tickers` (	
+	`ticker`		varchar(16) NOT NULL primary key,			
+	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`modification`	timestamp NULL,
+	`name`			varchar(255) NOT NULL unique,
+	`market`		varchar(16) not null,
+	`description`	text null,
+	`tictype`		enum('energies','indices', 'forex', 'not-set') null default 'not-set', 
+	`status`		enum('active','not-active') not null default "active"
+);
+
+-- markets 
+DROP TABLE IF EXISTS `markets`;
+CREATE TABLE `markets` (	
+	`market`		varchar(16) NOT NULL primary key,			
+	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`modification`	timestamp NULL,
+	`name`			varchar(255) NOT NULL unique,
+	`status`		enum('active','not-active') not null default "active"
 );
