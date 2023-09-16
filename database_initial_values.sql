@@ -2,6 +2,7 @@
 -- INITIAL VALUES
 -- -------------------------
 INSERT INTO divisas (iddivisa,name) VALUES (1,"dollar"),(2,"euro");
+INSERT INTO tpp (idtpp,name) VALUES (1,"tpp default");
 INSERT INTO brokers (idbroker,name) VALUES (1,"iBroker");
 INSERT INTO accounts (name,description, status, acctype,  idbroker,iddivisa) VALUES 
 ("iBroker","111000-A", "active","personal",1,2),

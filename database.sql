@@ -18,13 +18,13 @@ CREATE TABLE `positions` (
 	`datetimein`	timestamp NULL,
 	`datetimeout`	timestamp NULL,
 	`buysell`		enum('buy','sell') NOT NULL DEFAULT 'buy',
-	`pricein`		decimal(10,6) NOT NULL default 0.0,
-	`priceout`		decimal(10,6) NOT NULL default 0.0,
+	`pricein`		decimal(12,6) NOT NULL default 0.0,
+	`priceout`		decimal(12,6) NOT NULL default 0.0,
 	`ticks`			integer NOT NULL default 0,
 	`contracts`		integer NOT NULL DEFAULT 1,
-	`commision`		decimal(10,6) NOT NULL default 0.0,
-	`euros`			decimal(10,6) NOT NULL default 0.0,	
-	`dollareuro`	decimal(10,6) NOT NULL default 0.0,
+	`commision`		decimal(12,6) NOT NULL default 0.0,
+	`euros`			decimal(12,6) NOT NULL default 0.0,	
+	`dollareuro`	decimal(12,6) NOT NULL default 0.0,
 	`imagepath`		text NULL,
 	`iddivisa`		integer NOT NULL DEFAULT 1,
 	`idaccount`		integer NOT NULL default 1,
@@ -32,6 +32,15 @@ CREATE TABLE `positions` (
 	`pattern` 		varchar(16) NOT NULL,
 	`setup` 		varchar(16) NOT NULL,
 	`ticker` 		varchar(16) NOT NULL
+);
+
+DROP TABLE IF EXISTS `tpp`;
+CREATE TABLE `tpp` (
+	`idtpp`		integer NOT NULL auto_increment primary key,
+	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`name`			varchar(45) NOT NULL UNIQUE,
+	`description`	text NULL,
+	`status`		enum('active','not-active','cancelled','not-set') default 'not-set'
 );
 
 DROP TABLE IF EXISTS `brokers`;
