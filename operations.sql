@@ -1,11 +1,12 @@
-/*
--- Query: SELECT * FROM rotrading.operations
-LIMIT 0, 1000
 
--- Date: 2023-04-04 23:05
-*/
-INSERT INTO `positions` (`idoperation`,`creation`,`datetimein`,`datetimeout`,`buysell`,`pricein`,`priceout`,`ticks`,`contracts`,`commision`,`euros`,`dollareuro`,`imagepath`,`iddivisa`,`idaccount`,`status`, `pattern`, `setup`, `ticker`) VALUES 
-(1,'2023-04-04 00:00:00','2023-04-04 00:00:00','2023-04-04 00:00:00','buy',100.000000,180.000000,80,1,5.000000,80.000000,1.090000,' ',2,1,'opened', 'G','VD-i','MCL'), 
-(2,'2023-04-04 00:00:00','2023-04-04 00:00:00','2023-04-04 00:00:00','sell',90.000000,80.000000,-19,1,5.000000,-50.000000,1.081700,' ',2,1,'closed', 'G','VD-i','6E'),
-(3,'2023-04-05 14:30:00','2023-04-05 14:30:00','2023-04-05 15:10:00','buy',100.000000,180.000000,80,1,5.000000,80.000000,1.090000,' ',2,1,'closed', 'C','VD-r','MCL'),
-(4,'2023-04-05 14:30','2023-04-05 14:30:00','2023-04-05 15:25:00','sell',12100.000000,12180.000000,120,1,5.000000,1400.000000,1.090000,' ',2,1,'opened', 'G','F','6E');
+-- Query: SELECT * FROM rotrading.operations LIMIT 0, 1000
+
+-- Date: 2024-07-21 12:00
+-- -------------------------
+INSERT INTO `positions` (`id`, `block`, `creation`,`datetimein`,`datetimeout`,`buysell`,`pricein`,`priceout`,`ticks`,`contracts`,`commision`,`euros`,`dollareuro`,`imagepath`, `divisaid`,`accountid`,`status`, `patternid`, `setupid`, `tickerid`) VALUES 
+(1,'B001','2023-04-04 00:00:00','2023-04-04 00:00:00','2023-04-04 00:00:00','buy',100.00,180.0,80,1,4.5,80.0,1.090000,' ',2,1,'closed',1,1,1), 
+(2,'B001','2023-04-04 00:00:00','2023-04-04 00:00:00','2023-04-04 00:00:00','sell',90.00,80.0,-19,1,4.5,-50.0,1.081700,' ',2,1,'closed',1,1,1);
+
+INSERT INTO `positions` (`id`, `block`, `datetimein`, `datetimeout`, `buysell`,`pricein`, `contracts`,`commision`, `divisaid`,`accountid`,`status`, `patternid`, `setupid`, `tickerid`) VALUES 
+(3,'B001','2023-04-04 00:00:00','2000-01-01 00:00:00','buy',100.00,1,4.5,2,1,'opened',1,1,1), 
+(4,'B001','2023-04-04 00:00:00','2000-01-01 00:00:00','sell',90.00,1,4.5,2,1,'opened',1,1,1);

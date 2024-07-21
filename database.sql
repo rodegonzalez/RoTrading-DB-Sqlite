@@ -1,127 +1,173 @@
 -- 
--- rotrading
--- v1.0.0
--- 20230404
+-- rotrading - sqlite
+-- v2.1
+-- 20240721
 -- 
 
 -- -------------------------
 -- Ro-Trading
 -- 20230309
+-- 20240719 2.0
+-- 20240721 2.1 - Use name-description, status='not-set', active1-deleted0  in all tables
 -- -------------------------
 
+-- Date: 2024-07-21 12:00
+-- -------------------------
 -- use rotrading;
 
-DROP TABLE IF EXISTS `positions`;
-CREATE TABLE `positions` (
-	`idoperation`	integer NOT NULL auto_increment primary key,
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`datetimein`	timestamp NULL,
-	`datetimeout`	timestamp NULL,
-	`buysell`		enum('buy','sell') NOT NULL DEFAULT 'buy',
-	`pricein`		decimal(12,6) NOT NULL default 0.0,
-	`priceout`		decimal(12,6) NOT NULL default 0.0,
-	`ticks`			integer NOT NULL default 0,
-	`contracts`		integer NOT NULL DEFAULT 1,
-	`commision`		decimal(12,6) NOT NULL default 0.0,
-	`euros`			decimal(12,6) NOT NULL default 0.0,	
-	`dollareuro`	decimal(12,6) NOT NULL default 0.0,
-	`imagepath`		text NULL,
-	`iddivisa`		integer NOT NULL DEFAULT 1,
-	`idaccount`		integer NOT NULL default 1,
-	`status`		enum('opened','closed','cancelled','not-set') default 'not-set',
-	`pattern` 		varchar(16) NOT NULL,
-	`setup` 		varchar(16) NOT NULL,
-	`ticker` 		varchar(16) NOT NULL
+CREATE TABLE positions (
+	id 	integer  primary key,
+	block	text,
+	creation TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification TEXT default '2000-01-01 00:00:00',
+	guid			TEXT default '',
+	datetimein		TEXT default '2000-01-01 00:00:00',
+	datetimeout		TEXT default '2000-01-01 00:00:00',
+	buysell			TEXT DEFAULT "buy",
+	pricein			real default 0,
+	priceout		real default 0,
+	ticks			integer default 0,
+	profit			real default 0,
+	stoploss		real default 0,
+	contracts		integer DEFAULT 0,
+	commision		real default 0,
+	euros			real default 0,	
+	dollareuro		real default 0,
+	imagepath		TEXT default '',
+	divisaid		integer default 0,
+	accountid		integer default 0,
+	marketid		integer default 0,
+	status			TEXT default "not-set",
+	patternid 		integer default 0,
+	tppcheck		integer default 0,
+	setupid			integer default 0,
+	tickerid		integer default 0,
+	processed		integer default 0,
+	active			integer default 1,
+	deleted			integer default 0,
+	note			TEXT
+	
 );
 
-DROP TABLE IF EXISTS `tpp`;
-CREATE TABLE `tpp` (
-	`idtpp`		integer NOT NULL auto_increment primary key,
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`name`			varchar(45) NOT NULL UNIQUE,
-	`description`	text NULL,
-	`status`		enum('active','not-active','cancelled','not-set') default 'not-set'
+CREATE TABLE tpp (
+	id		integer  primary key,
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  UNIQUE,
+	description	TEXT,
+	status		TEXT default "not-set",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
-DROP TABLE IF EXISTS `brokers`;
-CREATE TABLE `brokers` (
-	`idbroker`		integer NOT NULL auto_increment primary key,
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`name`			varchar(45) NOT NULL UNIQUE,
-	`description`	text NULL,
-	`status`		enum('active','not-active','cancelled','not-set') default 'not-set'
+CREATE TABLE brokers (
+	id		integer  primary key,
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  UNIQUE,
+	description	TEXT,
+	status		TEXT  default "not-set",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
-DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE `accounts` (
-	`idaccount`			integer NOT NULL auto_increment primary key,
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`name`			varchar(45) NOT NULL UNIQUE,
-	`description`	text NULL,	
-	`amount_initial`	decimal(10,6) NOT NULL default 0.0,
-	`amount_current`	decimal(10,6) NOT NULL default 0.0,
-	`idbroker`		integer NOT NULL default 1,
-	`iddivisa`		integer NOT NULL DEFAULT 1,
-	`status`		enum('active','not-active','cancelled','not-set') default 'not-set',
-	`acctype`		enum('personal','funded','other','not-set') not null default "not-set"
+CREATE TABLE accounts (
+	id		integer  primary key,
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  UNIQUE,
+	description	TEXT,
+	amount_initial	REAL  default 0,
+	amount_current	REAL  default 0,
+	brokerid		integer  default 1,
+	divisaid		integer  DEFAULT 1,
+	status		TEXT default "not-set",
+	acctype		TEXT  default "not-set",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
-DROP TABLE IF EXISTS `divisas`;
-CREATE TABLE `divisas` (	
-	`iddivisa`		integer NOT NULL auto_increment primary key,
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`name`			varchar(45) NOT NULL UNIQUE,
-	`description`	TEXT NULL
+CREATE TABLE divisas (	
+	id		integer  primary key,
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  UNIQUE,
+	description	TEXT,
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
-DROP TABLE IF EXISTS `diaries`;
-CREATE TABLE `diaries` (	
-	`iddiary`		integer NOT NULL auto_increment primary key,			
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`annotation`	text NOT NULL,
-	`short`			text NULL,
-	`keywords`		text NULL
+CREATE TABLE diaries (	
+	id		integer  primary key,			
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	title		text,
+	annotation	TEXT,
+	short			TEXT,
+	keywords		TEXT NULL,
+	active		integer default 1,	
+	deleted		integer default 0,
+	note			TEXT default null	
 );
 
--- patterns 
-DROP TABLE IF EXISTS `positions_pattern`;
-CREATE TABLE `positions_pattern` (	
-	`pattern`		varchar(16) NOT NULL primary key,			
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`modification`	timestamp NULL,
-	`name`			varchar(45) NOT NULL unique,
-	`status`		enum('active','not-active') not null default "active"
+CREATE TABLE positions_pattern (	
+	id		integer  primary key,		
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  unique,
+	description	TEXT,
+	status		TEXT  default "active",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
--- setups 
-DROP TABLE IF EXISTS `positions_setup`;
-CREATE TABLE `positions_setup` (	
-	`setup`			varchar(16) NOT NULL primary key,			
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`modification`	timestamp NULL,
-	`name`			varchar(45) NOT NULL unique,
-	`status`		enum('active','not-active') not null default "active"
+CREATE TABLE positions_setup (	
+	id		integer  primary key,			
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  unique,
+	description	TEXT,
+	status		TEXT  default "not-set",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT  null
 );
 
--- tickers 
-DROP TABLE IF EXISTS `tickers`;
-CREATE TABLE `tickers` (	
-	`ticker`		varchar(16) NOT NULL primary key,			
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`modification`	timestamp NULL,
-	`name`			varchar(255) NOT NULL unique,
-	`market`		varchar(16) not null,
-	`description`	text null,
-	`tictype`		enum('energies','indices', 'forex', 'not-set') null default 'not-set', 
-	`status`		enum('active','not-active') not null default "active"
+CREATE TABLE tickers (	
+	id		integer  primary key,			
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			text unique,
+	description	TEXT,
+	marketid	integer default 1,
+	tictype		TEXT null default "not-set", 
+	status		TEXT  default "active",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
 );
 
--- markets 
-DROP TABLE IF EXISTS `markets`;
-CREATE TABLE `markets` (	
-	`market`		varchar(16) NOT NULL primary key,			
-	`creation`		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`modification`	timestamp NULL,
-	`name`			varchar(255) NOT NULL unique,
-	`status`		enum('active','not-active') not null default "active"
+CREATE TABLE markets (	
+	id		integer  primary key,			
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			text unique,
+	description	TEXT,
+	status		TEXT  default "not-set",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
+);
+
+-- test
+create table items (
+guid text null,
+id integer primary key,
+itemname text null,
+itemvalue integer null
 );

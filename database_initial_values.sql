@@ -1,32 +1,35 @@
 -- -------------------------
 -- INITIAL VALUES
+
+-- Date: 2024-07-21 12:00
 -- -------------------------
-INSERT INTO divisas (iddivisa,name) VALUES (1,"dollar"),(2,"euro");
-INSERT INTO tpp (idtpp,name) VALUES (1,"tpp default");
-INSERT INTO brokers (idbroker,name) VALUES (1,"iBroker");
-INSERT INTO accounts (name,description, status, acctype,  idbroker,iddivisa) VALUES 
-("iBroker","111000-A", "active","personal",1,2),
-("AOP","AOP8000180", "not-active","funded",1,2);
+INSERT INTO divisas (id, name) VALUES (1,"dollar"),(2,"euro");
+INSERT INTO tpp (id,name) VALUES (1,"tpp default");
+INSERT INTO brokers (id, name, status) VALUES (1,"iBroker", "current");
 
-INSERT INTO positions_pattern (pattern, name) VALUES 
-("G","Giro"),
-("C","Continuación");
+INSERT INTO accounts (id, name,description, status, acctype, brokerid, divisaid) VALUES 
+(1,"iBroker","111000-A", "active","personal",1,1),
+(2,"AOP","AOP8000180", "not-active","funded",1,1);
 
-INSERT INTO positions_setup (setup, name) VALUES 
-("F","Falta de volumen"),
-("VD-i","Vela direccional - interior"),
-("VD-A1","Vela direccional - A1"),
-("VD-B3","Vela direccional - B3"),
-("VD-r","Vela direccional - rechazo");
+INSERT INTO positions_pattern (id, name, description) VALUES 
+(1,"G","Giro"),
+(2,"C","Continuación");
 
-INSERT INTO markets (market, name) VALUES 
-("nymex","Nymex"),
-("globex","Globex"),
-("eurex","Eurex");
+INSERT INTO positions_setup (id, name, description) VALUES 
+(1,"F","Falta de volumen"),
+(2,"VD-i","Vela direccional - interior"),
+(3,"VD-A1","Vela direccional - A1"),
+(4,"VD-B3","Vela direccional - B3"),
+(5,"VD-r","Vela direccional - rechazo");
 
-INSERT INTO tickers (ticker, market, name, description, tictype) VALUES 
-("MCL","nymex", "MCL", "Micro Crude Oil", "energies"),
-("CL","nymex", "CL", "Crude Oil", "energies"),
-("QM","nymex", "QM", "Mini Crude Oil", "energies"),
-("YM","globex", "YM", "YM", "indices"),
-("6E","globex", "6E", "EURUSD", "forex");
+INSERT INTO markets (id, name, description) VALUES 
+(1,"nymex","Nymex"),
+(2,"globex","Globex"),
+(3,"eurex","Eurex");
+
+INSERT INTO tickers (id, name, marketid, description, tictype) VALUES 
+(1,"MCL", 1, "Micro Crude Oil", "energies"),
+(2,"CL", 1, "Crude Oil", "energies"),
+(3,"QM", 1, "Mini Crude Oil", "energies"),
+(4,"YM", 2, "YM", "indices"),
+(5,"6E", 2, "EURUSD", "forex");
