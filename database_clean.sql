@@ -25,3 +25,4 @@ DROP TABLE positions_setup;
 DROP TABLE tickers;
 DROP TABLE markets;
 DROP TABLE items;
+drop view view_positions;
