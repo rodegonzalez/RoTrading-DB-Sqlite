@@ -1,6 +1,6 @@
 -- 
 -- rotrading - sqlite
--- v2.1
+-- v2.2
 -- 20240721
 -- 
 
@@ -9,6 +9,7 @@
 -- 20230309
 -- 20240719 2.0
 -- 20240721 2.1 - Use name-description, status='not-set', active1-deleted0  in all tables
+-- 20240721 2.2 - Add tpp to positions. Add views
 -- -------------------------
 
 -- Date: 2024-07-21 12:00
@@ -21,8 +22,8 @@ CREATE TABLE positions (
 	creation TEXT DEFAULT CURRENT_TIMESTAMP,
 	modification TEXT default '2000-01-01 00:00:00',
 	guid			TEXT default '',
-	datetimein		TEXT default '2000-01-01 00:00:00',
-	datetimeout		TEXT default '2000-01-01 00:00:00',
+	datetimein		TEXT default '0',
+	datetimeout		TEXT default '0',
 	buysell			TEXT DEFAULT "buy",
 	pricein			real default 0,
 	priceout		real default 0,
@@ -34,19 +35,22 @@ CREATE TABLE positions (
 	euros			real default 0,	
 	dollareuro		real default 0,
 	imagepath		TEXT default '',
-	divisaid		integer default 0,
-	accountid		integer default 0,
-	marketid		integer default 0,
+
 	status			TEXT default "not-set",
-	patternid 		integer default 0,
 	tppcheck		integer default 0,
-	setupid			integer default 0,
-	tickerid		integer default 0,
 	processed		integer default 0,
 	active			integer default 1,
 	deleted			integer default 0,
-	note			TEXT
+	note			TEXT,
 	
+	divisaid		integer default 0,
+	accountid		integer default 0,
+	brokerid		integer default 0,
+	tickerid		integer default 0,
+	marketid		integer default 0,
+	patternid 		integer default 0,	
+	setupid			integer default 0,
+	tppid			integer default 0	
 );
 
 CREATE TABLE tpp (
@@ -171,3 +175,29 @@ id integer primary key,
 itemname text null,
 itemvalue integer null
 );
+
+
+-- -------------------------------- 
+-- Views
+
+create view view_positions as
+select 
+	p.*, 
+	d.name as divisa, 
+	a.name as account, 
+	m.name as market, 
+	pa.name as pattern, 
+	s.name as setup, 
+	t.name as ticker,	
+	tpp.name as tpp,
+	b.name as broker
+from positions p
+join tickers t on t.id = p.tickerid
+join accounts a on a.id = p.accountid
+join markets m on m.id = p.marketid 
+join divisas d on d.id = p.divisaid
+join positions_pattern pa on pa.id = p.patternid
+join positions_setup s on s.id = p.setupid
+join tpp on tpp.id = p.tppid 
+join brokers as b
+where p.deleted = 0;
