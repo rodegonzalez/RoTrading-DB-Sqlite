@@ -8,8 +8,8 @@ INSERT INTO tpp (id,name) VALUES (1,"tpp default");
 INSERT INTO brokers (id, name, status) VALUES (1,"iBroker", "current");
 
 INSERT INTO accounts (id, name,description, status, acctype, brokerid, divisaid) VALUES 
-(1,"iBroker","111000-A", "active","personal",1,1),
-(2,"AOP","AOP8000180", "not-active","funded",1,1);
+(1,"iBroker","111000-A", "active","REAL",1,1),
+(2,"AOP","AOP8000180", "not-active","Funded",1,1);
 
 INSERT INTO positions_pattern (id, name, description) VALUES 
 (1,"G","Giro"),

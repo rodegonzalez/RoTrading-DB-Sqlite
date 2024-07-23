@@ -18,6 +18,7 @@ select
 	p.*, 
 	d.name as divisa, 
 	a.name as account, 
+	a.acctype as acctype,
 	m.name as market, 
 	pa.name as pattern, 
 	s.name as setup, 

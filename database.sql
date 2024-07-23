@@ -10,6 +10,7 @@
 -- 20240719 2.0
 -- 20240721 2.1 - Use name-description, status='not-set', active1-deleted0  in all tables
 -- 20240721 2.2 - Add tpp to positions. Add views
+--				- isrealCheck, temporal
 -- -------------------------
 
 -- Date: 2024-07-21 12:00
@@ -38,9 +39,11 @@ CREATE TABLE positions (
 
 	status			TEXT default "not-set",
 	tppcheck		integer default 0,
+	isrealcheck		integer default 0,
 	processed		integer default 0,
 	active			integer default 1,
 	deleted			integer default 0,
+	temporal		text,
 	note			TEXT,
 	
 	divisaid		integer default 0,
@@ -184,7 +187,8 @@ create view view_positions as
 select 
 	p.*, 
 	d.name as divisa, 
-	a.name as account, 
+	a.name as account,
+	a.acctype as acctype,	
 	m.name as market, 
 	pa.name as pattern, 
 	s.name as setup, 
