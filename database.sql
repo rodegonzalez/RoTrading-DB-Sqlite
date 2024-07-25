@@ -56,7 +56,7 @@ CREATE TABLE positions (
 	tppid			integer default 0	
 );
 
-CREATE TABLE tpp (
+CREATE TABLE tpps (
 	id		integer  primary key,
 	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
 	modification	TEXT,

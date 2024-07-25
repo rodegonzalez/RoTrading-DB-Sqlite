@@ -4,7 +4,7 @@
 -- Date: 2024-07-21 12:00
 -- -------------------------
 INSERT INTO divisas (id, name) VALUES (1,"dollar"),(2,"euro");
-INSERT INTO tpp (id,name) VALUES (1,"tpp default");
+INSERT INTO tpps (id,name) VALUES (1,"tpp 1"), (2,"tpp 2");
 INSERT INTO brokers (id, name, status) VALUES (1,"iBroker", "current");
 
 INSERT INTO accounts (id, name,description, status, acctype, brokerid, divisaid) VALUES 

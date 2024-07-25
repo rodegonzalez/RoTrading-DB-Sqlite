@@ -15,7 +15,7 @@
 -- use rotrading;
 
 DROP TABLE positions;
-DROP TABLE tpp;
+DROP TABLE tpps;
 DROP TABLE brokers;
 DROP TABLE accounts;
 DROP TABLE divisas;
