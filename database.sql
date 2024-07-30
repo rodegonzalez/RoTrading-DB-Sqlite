@@ -121,7 +121,7 @@ CREATE TABLE diaries (
 	note			TEXT default null	
 );
 
-CREATE TABLE positions_pattern (	
+CREATE TABLE position_patterns (	
 	id		integer  primary key,		
 	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
 	modification	TEXT,
@@ -133,7 +133,7 @@ CREATE TABLE positions_pattern (
 	note			TEXT default null
 );
 
-CREATE TABLE positions_setup (	
+CREATE TABLE position_setups (	
 	id		integer  primary key,			
 	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
 	modification	TEXT,
@@ -193,15 +193,15 @@ select
 	pa.name as pattern, 
 	s.name as setup, 
 	t.name as ticker,	
-	tpp.name as tpp,
+	tpps.name as tpp,
 	b.name as broker
 from positions p
 join tickers t on t.id = p.tickerid
 join accounts a on a.id = p.accountid
 join markets m on m.id = p.marketid 
 join divisas d on d.id = p.divisaid
-join positions_pattern pa on pa.id = p.patternid
-join positions_setup s on s.id = p.setupid
-join tpp on tpp.id = p.tppid 
+join position_patterns pa on pa.id = p.patternid
+join position_setups s on s.id = p.setupid
+join tpps on tpps.id = p.tppid 
 join brokers as b
 where p.deleted = 0;
