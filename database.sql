@@ -11,9 +11,11 @@
 -- 20240721 2.1 - Use name-description, status='not-set', active1-deleted0  in all tables
 -- 20240721 2.2 - Add tpp to positions. Add views
 --				- isrealCheck, temporal
+-- 20240731 2.3 - Add pattaerns and setup to positions
+
 -- -------------------------
 
--- Date: 2024-07-21 12:00
+-- Date: 2024-07-31 12:00
 -- -------------------------
 -- use rotrading;
 
@@ -53,6 +55,8 @@ CREATE TABLE positions (
 	marketid		integer default 0,
 	patternid 		integer default 0,	
 	setupid			integer default 0,
+	pattern 		text,	
+	setup			text,
 	tppid			integer default 0	
 );
 
