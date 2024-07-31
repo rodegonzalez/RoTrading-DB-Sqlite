@@ -16,6 +16,18 @@ INSERT INTO position_patterns (id, name, description, modification) VALUES
 (2,"Continuación","Continuación", datetime("now")),
 (3,"Facilidad","Facilidad",datetime("now"));
 
+INSERT INTO position_highpatterns (id, name, description, modification) VALUES 
+(1,"A Tipo1","A Tipo1", datetime("now")),
+(2,"A Tipo2","A Tipo2", datetime("now")),
+(3,"A Tipo3","A Tipo3", datetime("now")),
+(4,"A Tipo4","A Tipo4", datetime("now")),
+(5,"A Tipo5","A Tipo5", datetime("now")),
+(6,"B Tipo1","B Tipo1", datetime("now")),
+(7,"B Tipo2","B Tipo2", datetime("now")),
+(8,"B Tipo3","B Tipo3", datetime("now")),
+(9,"B Tipo4","B Tipo4", datetime("now")),
+(10,"B Tipo5","B Tipo5", datetime("now"));
+
 INSERT INTO position_setups (id, name, description, modification) VALUES 
 (1,"FV","Falta de volumen", datetime("now")),
 (2,"VD-i","Vela direccional - interior", datetime("now")),

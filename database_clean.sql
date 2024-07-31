@@ -8,6 +8,7 @@
 -- Ro-Trading - Clean DB
 -- 20230309
 -- 20240719
+-- 20240731
 -- -------------------------
 
 -- Date: 2024-07-31 12:00
@@ -21,6 +22,7 @@ DROP TABLE accounts;
 DROP TABLE divisas;
 DROP TABLE diaries;
 DROP TABLE position_patterns;
+DROP TABLE position_highpatterns;
 DROP TABLE position_setups;
 DROP TABLE tickers;
 DROP TABLE markets;
