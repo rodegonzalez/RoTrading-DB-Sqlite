@@ -12,7 +12,7 @@
 -- 20240721 2.2 - Add tpp to positions. Add views
 --				- isrealCheck, temporal
 -- 20240731 2.3 - Add pattaerns and setup to positions
-
+-- 20240731 2.4 - Add highpatterns
 -- -------------------------
 
 -- Date: 2024-07-31 12:00
@@ -125,6 +125,18 @@ CREATE TABLE diaries (
 	note			TEXT default null	
 );
 
+CREATE TABLE position_highpatterns (	
+	id		integer  primary key,		
+	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
+	modification	TEXT,
+	name			TEXT  unique,
+	description	TEXT,
+	status		TEXT  default "active",
+	active		integer default 1,
+	deleted		integer default 0,
+	note			TEXT default null
+);
+
 CREATE TABLE position_patterns (	
 	id		integer  primary key,		
 	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -157,6 +169,9 @@ CREATE TABLE tickers (
 	description	TEXT,
 	marketid	integer default 1,
 	tictype		TEXT null default "not-set", 
+	tickmin real default 0.0,
+	tickminvalue real default 0.0,
+	divisaid integer default 1,
 	status		TEXT  default "active",
 	active		integer default 1,
 	deleted		integer default 0,

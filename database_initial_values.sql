@@ -40,10 +40,10 @@ INSERT INTO markets (id, name, description, modification) VALUES
 (2,"GLOBEX","Globex", datetime("now")),
 (3,"EUREX","Eurex", datetime("now"));
 
-INSERT INTO tickers (id, name, marketid, description, tictype, modification) VALUES 
-(1,"MCL", 1, "Micro Crude Oil", "energies", datetime("now")),
-(2,"CL", 1, "Crude Oil", "energies", datetime("now")),
-(3,"QM", 1, "Mini Crude Oil", "energies", datetime("now")),
-(4,"YM", 2, "YM", "indices", datetime("now")),
-(5,"6E", 2, "EURUSD", "forex", datetime("now"));
+INSERT INTO tickers (id, name, marketid, description, tictype, modification,tickmin, tickminvalue,divisaid) VALUES 
+(1,"MCL", 1, "Micro Crude Oil", "energies", datetime("now"),0.01,1,1),
+(2,"CL", 1, "Crude Oil", "energies", datetime("now"),0.01,10,1),
+(3,"QM", 1, "Mini Crude Oil", "energies", datetime("now"),0.01,5,1),
+(4,"YM", 2, "YM", "indices", datetime("now"),0.0005,6.25,1),
+(5,"6E", 2, "EURUSD", "forex", datetime("now"),0.01,5,1);
 
