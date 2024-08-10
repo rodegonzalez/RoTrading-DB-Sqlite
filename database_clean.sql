@@ -11,10 +11,11 @@
 -- 20240731
 -- -------------------------
 
--- Date: 2024-07-31 12:00
+-- Date: 2024-08-09
 -- -------------------------
 -- use rotrading;
 
+DROP TABLE sessions;
 DROP TABLE positions;
 DROP TABLE tpps;
 DROP TABLE brokers;
