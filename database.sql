@@ -14,16 +14,16 @@
 -- 20240731 2.3 - Add pattaerns and setup to positions
 -- 20240731 2.4 - Add highpatterns
 -- 20240809 2.5 - Change positions, add sessions
+-- 20240811 2.6 - Tickeraccounts where to extract commissions. Change sessions.commisSion
 -- -------------------------
-
--- Date: 2024-08-09
 -- -------------------------
 -- use rotrading;
 
 CREATE TABLE sessions (
-	id 				text PRIMARY KEY, 		/* use yyyyMMdd format */
+	id 				integer PRIMARY KEY, 		/* use yyyyMMdd format */
 	usdeur			real DEFAULT 0, 		/* day value usd to eur */
 	haspositions	integer DEFAULT 0,
+	consolidated	integer default 0,		/* consolidated values */
 	note			text	
 );
 
@@ -164,6 +164,15 @@ CREATE TABLE tickers (
 	active			integer DEFAULT 1,
 	deleted			integer DEFAULT 0,
 	note			text
+);
+
+CREATE TABLE tickeraccounts (	
+	tickerid		integer, 
+	accountid		integer,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	commission		real default 0, /* commision by broker, round turn commission */
+	PRIMARY KEY (tickerid, accountid)
 );
 
 -- test

@@ -1,8 +1,8 @@
 -- 
 -- Indexes
 --
--- Date: 2024-08-09
---
+-- 2024-08-09
+-- 2024-08-11
 
 CREATE INDEX bysession_idx on positions(sessionid,deleted);
 CREATE INDEX bytpp_idx on positions(tppid);

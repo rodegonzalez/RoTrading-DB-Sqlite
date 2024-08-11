@@ -1,7 +1,8 @@
 -- -------------------------
 -- INITIAL VALUES
 
--- Date: 2024-07-31 12:00
+-- 2024-08-09
+-- 2024-08-11
 -- -------------------------
 INSERT INTO divisas (id, name, modification) VALUES (1,"dollar", datetime("now")),(2,"euro", datetime("now"));
 INSERT INTO tpps (id,name, modification) VALUES (1,"tpp 1", datetime("now")), (2,"tpp 2", datetime("now"));
@@ -47,3 +48,4 @@ INSERT INTO tickers (id, name, marketid, description, tictype, modification,tick
 (4,"YM", 2, "YM", "indices", datetime("now"),0.0005,6.25,1),
 (5,"6E", 2, "EURUSD", "forex", datetime("now"),0.01,5,1);
 
+INSERT INTO tickeraccounts (`tickerid`,`accountid`, commission) VALUES (1,1,3.50);

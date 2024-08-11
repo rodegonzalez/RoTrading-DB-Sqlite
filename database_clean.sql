@@ -9,9 +9,9 @@
 -- 20230309
 -- 20240719
 -- 20240731
+-- 2024-08-09
+-- 2024-08-11
 -- -------------------------
-
--- Date: 2024-08-09
 -- -------------------------
 -- use rotrading;
 
@@ -26,6 +26,7 @@ DROP TABLE position_patterns;
 DROP TABLE position_highpatterns;
 DROP TABLE position_setups;
 DROP TABLE tickers;
+DROP TABLE tickeraccounts;
 DROP TABLE markets;
 DROP TABLE items;
 drop view view_positions;
