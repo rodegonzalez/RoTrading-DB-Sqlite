@@ -21,41 +21,41 @@
 -- use rotrading;
 
 CREATE TABLE sessions (
-	id 				text primary key, 		/* use yyyyMMdd format */
-	usdeur			real default 0, 		/* day value usd to eur */
-	haspositions	integer default 0,
-	note		text	
+	id 				text PRIMARY KEY, 		/* use yyyyMMdd format */
+	usdeur			real DEFAULT 0, 		/* day value usd to eur */
+	haspositions	integer DEFAULT 0,
+	note			text	
 );
 
 CREATE TABLE positions (
-	id 				integer primary key AUTOINCREMENT,
-	sessionid		text not null, 					/* use yyyyMMdd format */
+	id 				integer PRIMARY KEY AUTOINCREMENT,
+	sessionid		text NOT NULL, 					/* use yyyyMMdd format */
 	guid			text,
-	tppid			integer default 0,
-	tppcheck		integer default 1, 		/* 1-true 0-false */
-	block			text default 'Not-set',
-	blocksecuence	integer default 0,
+	tppid			integer DEFAULT 0,
+	tppcheck		integer DEFAULT 1, 		/* 1-true 0-false */
+	block			text DEFAULT 'not-set',
+	blocksecuence	integer DEFAULT 0,
 	creation 		text DEFAULT CURRENT_TIMESTAMP,
 	modification 	text,	
 	timein			text,
 	timeout			text,
-	pricein			real default 0,
-	priceout		real default 0,
+	pricein			real DEFAULT 0,
+	priceout		real DEFAULT 0,
 	buysell			text DEFAULT "buy",
 	contracts		integer DEFAULT 0,
-	opresultticks		integer default 0,
-	opresult		real default 0, 		/* in divisaid */
-	commission		real default 0, 		/* in divisaid, round turn commission */
-	opresulteur		real default 0,
-	divisaid		integer default 0,
-	accountid		integer default 0,	
-	tickerid		integer default 0,
-	pattern1id 		integer default 0, 		/* high pattern */	
-	pattern2id 		text default 'Not-set', /* G-giro C-continuacion F-facilidad */	
-	setup1id		integer default 0,
-	setup2id		text default 'Not-set', /* setup temporality m1,m3,m5 */
-	processed		integer default 0,
-	deleted			integer default 0,
+	opresultticks	integer DEFAULT 0,
+	opresult		real DEFAULT 0, 		/* in divisaid */
+	commission		real DEFAULT 0, 		/* in divisaid, round turn commission */
+	opresulteur		real DEFAULT 0,
+	divisaid		integer DEFAULT 0,
+	accountid		integer DEFAULT 0,	
+	tickerid		integer DEFAULT 0,
+	pattern1id 		integer DEFAULT 0, 		/* high pattern */	
+	pattern2id 		text DEFAULT 'not-set', /* G-giro C-continuacion F-facilidad */	
+	setup1id		integer DEFAULT 0,
+	setup2id		text DEFAULT 'not-set', /* setup temporality m1,m3,m5 */
+	processed		integer DEFAULT 0,
+	deleted			integer DEFAULT 0,
 	deletednote		text,					/* why deleted */
 	imagepath		text,
 	note			text,
@@ -63,115 +63,115 @@ CREATE TABLE positions (
 );
 
 CREATE TABLE tpps (
-	id		integer  primary key AUTOINCREMENT,
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  UNIQUE,
-	description	TEXT,
-	status		TEXT default "not-set",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer  PRIMARY KEY AUTOINCREMENT,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE,
+	description		text,
+	status			text DEFAULT "not-set",
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text DEFAULT NULL
 );
 
 CREATE TABLE accounts (
-	id		integer  primary key AUTOINCREMENT,
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  UNIQUE, /* include account name and broker */ 
-	description	TEXT,
-	amount_initial	REAL  default 0,
-	amount_current	REAL  default 0,
-	divisaid		integer  DEFAULT 1,
-	status		TEXT default "not-set",
-	acctype		TEXT  default "not-set",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer  PRIMARY KEY AUTOINCREMENT,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE, /* include account name and broker */ 
+	description		text,
+	amount_initial	REAL  DEFAULT 0,
+	amount_current	REAL  DEFAULT 0,
+	divisaid		integer DEFAULT 1,
+	status			text DEFAULT "not-set",
+	acctype			text  DEFAULT "not-set",
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 CREATE TABLE divisas (	
-	id		integer  primary key AUTOINCREMENT,
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  UNIQUE,
-	description	TEXT,
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer  PRIMARY KEY AUTOINCREMENT,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE,
+	description		text,
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 CREATE TABLE diaries (	
-	id		integer  primary key AUTOINCREMENT,			
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	title		text,
-	annotation	TEXT,
-	short			TEXT,
-	keywords		TEXT NULL,
-	active		integer default 1,	
-	deleted		integer default 0,
-	note			TEXT default null	
+	id				integer PRIMARY KEY AUTOINCREMENT,			
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	title			text,
+	anNOTation		text,
+	short			text,
+	keywords		text,
+	active			integer DEFAULT 1,	
+	deleted			integer DEFAULT 0,
+	note			text	
 );
 
 CREATE TABLE position_highpatterns (	
-	id		integer  primary key AUTOINCREMENT,		
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  unique,
-	description	TEXT,
-	status		TEXT  default "active",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer PRIMARY KEY AUTOINCREMENT,		
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE,
+	description		text,
+	status			text  DEFAULT "active",
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 CREATE TABLE position_patterns (	
-	id		integer primary key AUTOINCREMENT,		
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  unique,
-	description	TEXT,
-	status		TEXT  default "active",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer PRIMARY KEY AUTOINCREMENT,		
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE,
+	description		text,
+	status			text  DEFAULT "active",
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 CREATE TABLE position_setups (	
-	id		integer  primary key AUTOINCREMENT,			
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			TEXT  unique,
-	description	TEXT,
-	status		TEXT  default "not-set",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT  null
+	id				integer PRIMARY KEY AUTOINCREMENT,			
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE,
+	description		text,
+	status			text  DEFAULT "not-set",
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 CREATE TABLE tickers (	
-	id		integer  primary key AUTOINCREMENT,			
-	creation		TEXT DEFAULT CURRENT_TIMESTAMP,
-	modification	TEXT,
-	name			text unique, /* include ticker and market */
-	description	TEXT,
-	tictype		TEXT null default "not-set", 
-	tickmin real default 0.0,
-	tickminvalue real default 0.0,
-	divisaid integer default 1,
-	status		TEXT  default "active",
-	active		integer default 1,
-	deleted		integer default 0,
-	note			TEXT default null
+	id				integer PRIMARY KEY AUTOINCREMENT,			
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	name			text UNIQUE, /* include ticker and market */
+	description		text,
+	tictype			text NULL DEFAULT "not-set", 
+	tickmin 		real DEFAULT 0,
+	tickminvalue 	real DEFAULT 0,
+	divisaid 		integer DEFAULT 1,
+	status			text,
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	note			text
 );
 
 -- test
 create table items (
-guid text null,
-id integer primary key AUTOINCREMENT,
-itemname text null,
-itemvalue integer null
+guid text NULL,
+id integer PRIMARY KEY AUTOINCREMENT,
+itemname text NULL,
+itemvalue integer NULL
 );
 
 
