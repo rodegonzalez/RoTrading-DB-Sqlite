@@ -8,9 +8,10 @@ INSERT INTO divisas (id, name, modification) VALUES (1,"dollar", datetime("now")
 INSERT INTO tpps (id,name, modification) VALUES (1,"tpp 1", datetime("now")), (2,"tpp 2", datetime("now"));
 INSERT INTO brokers (id, name, status, modification) VALUES (1,"iBroker", "current", datetime("now"));
 
-INSERT INTO accounts (id, name,description, status, acctype, brokerid, divisaid, modification) VALUES 
-(1,"iBroker","111000-A", "active","REAL",1,1, datetime("now")),
-(2,"AOP","AOP8000180", "not-active","Funded",1,1, datetime("now"));
+INSERT INTO accounts (name,description, status, acctype, brokerid, divisaid) VALUES 
+("iBroker","111000-A", "active","REAL",1,1),
+("PaperTrading","Simulated", "active","Simulated",1,1),
+("AOP","AOP8000180", "active","Funded",1,1);
 
 INSERT INTO position_patterns (id, name, description, modification) VALUES 
 (1,"Giro","Giro", datetime("now")),
