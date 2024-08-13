@@ -11,6 +11,7 @@
 -- 20240731
 -- 2024-08-09
 -- 2024-08-11
+-- 2024-08-14
 -- -------------------------
 -- -------------------------
 -- use rotrading;
@@ -18,7 +19,8 @@
 DROP TABLE sessions;
 DROP TABLE positions;
 DROP TABLE tpps;
-DROP TABLE brokers;
+DROP TABLE tppblocks;
+DROP TABLE tppblocksecuences;
 DROP TABLE accounts;
 DROP TABLE divisas;
 DROP TABLE diaries;
@@ -27,6 +29,5 @@ DROP TABLE position_highpatterns;
 DROP TABLE position_setups;
 DROP TABLE tickers;
 DROP TABLE tickeraccounts;
-DROP TABLE markets;
 DROP TABLE items;
 drop view view_positions;

@@ -15,6 +15,7 @@
 -- 20240731 2.4 - Add highpatterns
 -- 20240809 2.5 - Change positions, add sessions
 -- 20240811 2.6 - Tickeraccounts where to extract commissions. Change sessions.commisSion
+-- 20240914 2.7 - Blocks and secuences of positions
 -- -------------------------
 -- -------------------------
 -- use rotrading;
@@ -29,12 +30,12 @@ CREATE TABLE sessions (
 
 CREATE TABLE positions (
 	id 				integer PRIMARY KEY AUTOINCREMENT,
-	sessionid		text NOT NULL, 					/* use yyyyMMdd format */
+	sessionid		integer DEFAULT 0, 		/* integer using yyyyMMdd format */
 	guid			text,
-	tppid			integer DEFAULT 0,
+	tppid			integer DEFAULT 0,	
+	tppblock			integer DEFAULT 0,
+	tppblocksecuence	integer DEFAULT 0,
 	tppcheck		integer DEFAULT 1, 		/* 1-true 0-false */
-	block			text DEFAULT 'not-set',
-	blocksecuence	integer DEFAULT 0,
 	creation 		text DEFAULT CURRENT_TIMESTAMP,
 	modification 	text,	
 	timein			text,
@@ -68,10 +69,30 @@ CREATE TABLE tpps (
 	modification	text,
 	name			text UNIQUE,
 	description		text,
+	blockprefix		text DEFAULT 'B',
+	maxblocksecuence	integer DEFAULT 10, /* max secuence items in block of each tpp*/
 	status			text DEFAULT "not-set",
 	active			integer DEFAULT 1,
 	deleted			integer DEFAULT 0,
 	note			text DEFAULT NULL
+);
+
+CREATE TABLE tppblocks (
+	id				integer  PRIMARY KEY AUTOINCREMENT,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	tppid			integer DEFAULT 0,
+	tppblock	integer DEFAULT 0	/* secuential block number of tpp */
+);
+
+CREATE TABLE tppblocksecuences (
+	id				integer  PRIMARY KEY AUTOINCREMENT,
+	creation		text DEFAULT CURRENT_TIMESTAMP,
+	modification	text,
+	positionid		integer DEFAULT 0,	/* this secuence number belogs to a position */
+	sessionid		integer DEFAULT 0,	/* this secuence number belogs to a session */	
+	tppblockid			integer DEFAULT 0,
+	tppblocksecuence	integer DEFAULT 0	/* secuential number in block of tpp */
 );
 
 CREATE TABLE accounts (
@@ -196,12 +217,12 @@ select
 	pa.name as pattern, 
 	s.name as setup, 
 	t.name as ticker,	
-	tpps.name as tpp
+	tpp.name as tpp
 from positions p
 join tickers t on t.id = p.tickerid
 join accounts a on a.id = p.accountid
 join divisas d on d.id = p.divisaid
 join position_highpatterns pa on pa.id = p.pattern1id
 join position_setups s on s.id = p.setup1id
-join tpps on tpps.id = p.tppid 
+join tpps as tpp on tpp.id = p.tppid 
 where p.deleted = 0;

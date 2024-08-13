@@ -1,10 +1,21 @@
 -- 2024-08-09
 -- 2024-08-11
+-- 2024-08-14
 -- -------------------------
 
+INSERT INTO tpps (`id`, `name`) VALUES (1,"tpp 1"), (2,"tpp 2");
 INSERT INTO sessions (`id`,`usdeur`) values (20240809,0.92),(20240811,0.93);
+INSERT INTO tppblocks (id, tppid, tppblock) VALUES (1,1,1), (2,2,1);
+INSERT INTO tppblocksecuences (id, tppblockid,tppblocksecuence, positionid) VALUES (1,1,1,1),(2,1,2,2),(3,1,3,3),(4,2,1,4);
 
 
-INSERT INTO `positions` (`sessionid`,`tppid`,`block`,`blocksecuence`,`timein`,`timeout`,`buysell`,`pricein`,`priceout`,`opresultticks`,`contracts`,`commission`,`opresult`,`divisaid`,`accountid`, `pattern1id`,`pattern2id`, `setup1id`, `setup2id`,`tickerid`,`status`) VALUES 
-('20240809',1,'B01',1,'14:00','14:30','buy',100.00,180.0,80,1,4.5,80.0,1,1,1,'G',1,"m5",1,'opened'), 
-('20240809',1,'B01',2,'14:40','14:55','sell',90.00,80.0,-19,1,4.5,-50.0,1,1,2,'F',1,"m3",1,'closed');
+-- TODO:
+-- Cambiar pattern1id a highpattern
+-- Cambiar pattern2id a pattern
+-- Cambiar setup1id a setup
+-- Cambiar setup2id a setuptemporality
+INSERT INTO `positions` (`id`,`sessionid`,`tppid`,`tppblock`,`tppblocksecuence`,`timein`,`timeout`,`buysell`,`pricein`,`priceout`,`opresultticks`,`contracts`,`commission`,`opresult`,`divisaid`,`accountid`, `pattern1id`,`pattern2id`, `setup1id`, `setup2id`,`tickerid`,`status`) VALUES 
+(1,20240809,1,1,1,'14:00','14:30','buy',100.00,180.0,80,1,4.5,80.0,1,1,1,'G',1,"m5",1,'opened'), 
+(2,20240809,1,1,2,'14:40','14:55','sell',90.00,80.0,-19,1,4.5,-50.0,1,1,2,'F',1,"m3",1,'opened'),
+(3,20240811,1,1,3,'14:00','14:30','buy',100.00,180.0,80,1,4.5,80.0,1,1,1,'G',1,"m5",1,'closed'), 
+(4,20240811,2,2,1,'14:40','14:55','sell',90.00,80.0,-19,1,4.5,-50.0,1,1,2,'F',1,"m3",1,'opened');
