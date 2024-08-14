@@ -5,7 +5,7 @@
 -- 2024-08-11
 -- 2024-08-14
 -- -------------------------
-INSERT INTO divisas (id, name, modification) VALUES (1,"dollar", datetime("now")),(2,"euro", datetime("now"));
+INSERT INTO divisas (id, name, modification) VALUES (1,"USD", datetime("now")),(2,"EUR", datetime("now"));
 
 INSERT INTO accounts (id, name, status, acctype, divisaid) VALUES 
 (1,"111000-A (iBroker)", "active","REAL",1),
