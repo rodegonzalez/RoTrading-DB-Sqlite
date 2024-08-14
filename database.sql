@@ -224,6 +224,6 @@ join tickers t on t.id = p.tickerid
 join accounts a on a.id = p.accountid
 join divisas d on d.id = p.divisaid
 join position_highpatterns pa on pa.id = p.pattern1id
-join position_setups s on s.id = p.setup1id
+join position_setups s on s.id = p.setup2id
 join tpps as tpp on tpp.id = p.tppid 
 where p.deleted = 0;
