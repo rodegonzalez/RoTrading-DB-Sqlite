@@ -33,8 +33,8 @@ CREATE TABLE positions (
 	sessionid		integer DEFAULT 0, 		/* integer using yyyyMMdd format */
 	guid			text,
 	tppid			integer DEFAULT 0,	
-	tppblock			integer DEFAULT 0,
-	tppblocksecuence	integer DEFAULT 0,
+	tppblocksec		integer DEFAULT 0,
+	sec				integer DEFAULT 0,
 	tppcheck		integer DEFAULT 1, 		/* 1-true 0-false */
 	creation 		text DEFAULT CURRENT_TIMESTAMP,
 	modification 	text,	
@@ -53,8 +53,8 @@ CREATE TABLE positions (
 	tickerid		integer DEFAULT 0,
 	pattern1id 		integer DEFAULT 0, 		/* high pattern */	
 	pattern2id 		text DEFAULT 'not-set', /* G-giro C-continuacion F-facilidad */	
-	setup1id		integer DEFAULT 0,
-	setup2id		text DEFAULT 'not-set', /* setup temporality m1,m3,m5 */
+	setup1id		text DEFAULT 0,
+	setup2id		integer DEFAULT 'not-set', /* setup temporality m1,m3,m5 */
 	processed		integer DEFAULT 0,
 	deleted			integer DEFAULT 0,
 	deletednote		text,					/* why deleted */
