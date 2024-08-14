@@ -5,8 +5,8 @@
 
 INSERT INTO tpps (`id`, `name`) VALUES (1,"tpp 1"), (2,"tpp 2");
 INSERT INTO sessions (`id`,`usdeur`) values (20240809,0.92),(20240811,0.93);
-INSERT INTO tppblocks (id, tppid, tppblock) VALUES (1,1,1), (2,2,1);
-INSERT INTO tppblocksecuences (id, tppblockid,tppblocksecuence, positionid) VALUES (1,1,1,1),(2,1,2,2),(3,1,3,3),(4,2,1,4);
+INSERT INTO tppblocks (id, tppid, tppblocksec) VALUES (1,1,1), (2,2,1);
+INSERT INTO tppblocksecuences (id, tppid, tppblocksec,sec, positionid) VALUES (1,1,1,1,1),(2,1,1,2,2),(3,1,1,3,3),(4,2,1,1,4);
 
 
 -- TODO:

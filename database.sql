@@ -82,7 +82,7 @@ CREATE TABLE tppblocks (
 	creation		text DEFAULT CURRENT_TIMESTAMP,
 	modification	text,
 	tppid			integer DEFAULT 0,
-	tppblock	integer DEFAULT 0	/* secuential block number of tpp */
+	tppblocksec		integer DEFAULT 0	/* secuential block number of tpp */
 );
 
 CREATE TABLE tppblocksecuences (
@@ -91,8 +91,9 @@ CREATE TABLE tppblocksecuences (
 	modification	text,
 	positionid		integer DEFAULT 0,	/* this secuence number belogs to a position */
 	sessionid		integer DEFAULT 0,	/* this secuence number belogs to a session */	
-	tppblockid			integer DEFAULT 0,
-	tppblocksecuence	integer DEFAULT 0	/* secuential number in block of tpp */
+	tppid			integer DEFAULT 0,
+	tppblocksec			integer DEFAULT 0,
+	sec	integer DEFAULT 0	/* secuential number in block of tpp */
 );
 
 CREATE TABLE accounts (
