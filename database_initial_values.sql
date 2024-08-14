@@ -7,10 +7,10 @@
 -- -------------------------
 INSERT INTO divisas (id, name, modification) VALUES (1,"dollar", datetime("now")),(2,"euro", datetime("now"));
 
-INSERT INTO accounts (name,description, status, acctype, divisaid) VALUES 
-("iBroker","111000-A", "active","REAL",1),
-("PaperTrading","Simulated", "active","Simulated",1),
-("AOP","AOP8000180", "active","Funded",1);
+INSERT INTO accounts (id, name, status, acctype, divisaid) VALUES 
+(1,"111000-A (iBroker)", "active","REAL",1),
+(2,"Sim (PaperTrading)", "active","Simulated",1),
+(3,"AOP8000180 (AOP)", "active","Funded",1);
 
 INSERT INTO position_patterns (id, name, description, modification) VALUES 
 (1,"Giro","Giro", datetime("now")),
