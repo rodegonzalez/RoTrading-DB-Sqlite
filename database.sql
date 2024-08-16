@@ -16,16 +16,21 @@
 -- 20240809 2.5 - Change positions, add sessions
 -- 20240811 2.6 - Tickeraccounts where to extract commissions. Change sessions.commisSion
 -- 20240914 2.7 - Blocks and secuences of positions
+-- 20240916 2.8 - Sessions
 -- -------------------------
 -- -------------------------
 -- use rotrading;
 
 CREATE TABLE sessions (
 	id 				integer PRIMARY KEY, 		/* use yyyyMMdd format */
+	creation 		text DEFAULT CURRENT_TIMESTAMP,
+	modification 	text,	
 	usdeur			real DEFAULT 0, 		/* day value usd to eur */
 	haspositions	integer DEFAULT 0,
 	consolidated	integer default 0,		/* consolidated values */
-	note			text	
+	active			integer DEFAULT 1,
+	deleted			integer DEFAULT 0,
+	sessionnote		text	
 );
 
 CREATE TABLE positions (
@@ -44,9 +49,10 @@ CREATE TABLE positions (
 	priceout		real DEFAULT 0,
 	buysell			text DEFAULT "buy",
 	contracts		integer DEFAULT 0,
+	commission		real DEFAULT 0, 		/* in divisaid, round turn commission */
 	opresultticks	integer DEFAULT 0,
 	opresult		real DEFAULT 0, 		/* in divisaid */
-	commission		real DEFAULT 0, 		/* in divisaid, round turn commission */
+	usdeur			real DEFAULT 0, 		/* day value usd to eur */	
 	opresulteur		real DEFAULT 0,
 	divisaid		integer DEFAULT 0,
 	accountid		integer DEFAULT 0,	
