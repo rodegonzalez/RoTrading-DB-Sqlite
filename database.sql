@@ -1,22 +1,18 @@
--- 
--- rotrading - sqlite
--- v2.2
--- 20240721
--- 
-
 -- -------------------------
--- Ro-Trading
--- 20230309
--- 20240719 2.0
--- 20240721 2.1 - Use name-description, status='not-set', active1-deleted0  in all tables
--- 20240721 2.2 - Add tpp to positions. Add views
+-- Ro-Trading DB - sqlite
+-- -------------------------
+-- 20230309 0.0.0,0
+-- 20240719 
+-- 20240721 0.1.0.1 - Use name-description, status='not-set', active1-deleted0  in all tables
+-- 20240721 0.1.0.2 - Add tpp to positions. Add views
 --				- isrealCheck, temporal
--- 20240731 2.3 - Add pattaerns and setup to positions
--- 20240731 2.4 - Add highpatterns
--- 20240809 2.5 - Change positions, add sessions
--- 20240811 2.6 - Tickeraccounts where to extract commissions. Change sessions.commisSion
--- 20240914 2.7 - Blocks and secuences of positions
--- 20240916 2.8 - Sessions
+-- 20240731 0.1.0.3 - Add pattaerns and setup to positions
+-- 20240731 0.1.0.4 - Add highpatterns
+-- 20240809 0.1.0.5 - Change positions, add sessions
+-- 20240811 0.1.0.6 - Tickeraccounts where to extract commissions. Change sessions.commisSion
+-- 20240914 0.1.0.7 - Blocks and secuences of positions
+-- 20240916 0.1.0.8 - Sessions
+-- 20240817 0.1.0.9 - Rewrite version for publish - TAG 0.1.0
 -- -------------------------
 -- -------------------------
 -- use rotrading;

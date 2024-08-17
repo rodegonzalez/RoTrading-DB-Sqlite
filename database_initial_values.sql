@@ -1,10 +1,12 @@
 -- -------------------------
--- INITIAL VALUES
-
+-- Initial values
+-- -------------------------
 -- 2024-08-09
 -- 2024-08-11
 -- 2024-08-14
 -- -------------------------
+-- use rotrading;
+
 INSERT INTO divisas (id, name, modification) VALUES (1,"USD", datetime("now")),(2,"EUR", datetime("now"));
 
 INSERT INTO accounts (id, name, status, acctype, divisaid) VALUES 
